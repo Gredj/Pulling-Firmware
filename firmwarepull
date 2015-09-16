@@ -1,0 +1,19 @@
+__author__ = 'GSaucier'
+
+
+from urllib.request import urlopen
+import re
+
+
+boardlist = ["TN2198BP", "TN2214", "TN2302AP_HV3", "TN2302AP_HV11",  "TN2224", "TN2302AP_HV3","TN464HP_HW0"] # Need to add the rest of the boards
+i=0
+while i<len(boardlist):
+    url = "https://support.avaya.com/downloads/download-details.action?contentId=C20090710154815434625607&productId=P0512"
+    htmlfile = urlopen(url)
+    htmltext = htmlfile.read()
+    htmltext = htmltext.decode() #Decodes the html text to uni-code
+    regex =  boardlist[i] + '">(.+?)</a></td>'
+    pattern = re.compile(regex)
+    firmware = re.findall(pattern, htmltext)
+    print ("The latest firmware of",boardlist[i], "is", firmware)
+    i+=1
