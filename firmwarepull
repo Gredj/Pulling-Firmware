@@ -11,7 +11,7 @@ while i<len(boardlist):
     url = "https://support.avaya.com/downloads/download-details.action?contentId=C20090710154815434625607&productId=P0512"
     htmlfile = urlopen(url)
     htmltext = htmlfile.read()
-    htmltext = htmltext.decode() #Decodes the html text to uni-code
+    htmltext = htmltext.decode() 
     regex =  boardlist[i] + '">(.+?)</a></td>'
     pattern = re.compile(regex)
     firmware = re.findall(pattern, htmltext)
